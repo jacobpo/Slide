@@ -60,7 +60,7 @@ function Sidebar(props) {
 						<a>Resources</a>
 					</Link>
                 <div >
-						<a>Join study group</a>
+						<a onClick = {() => (setShowGroups(true))}>Join study group</a>
                         {showGroups && (
                             <span>
                         <ul>
