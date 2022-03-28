@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Link from "next/link";
+
 
 export default function Home() {
   return (
@@ -9,13 +11,13 @@ export default function Home() {
       <div>
         <ul>
           <li>
-          <a href = "/Classes/ACCT1101">ACCT1101</a> 
+          <Link href = "/Classes/ACCT1101">ACCT1101</Link> 
           </li>
           <li>
-          <a href = "/Classes/CITS1401">CITS1401</a>
+          <Link href = "/Classes/CITS1401">CITS1401</Link> 
           </li>
           <li>
-          <a href = "/Classes/FINA3001">FINA3001</a>
+          <Link href = "/Classes/FINA3000">FINA300</Link> 
           </li>
         </ul>
       </div>
