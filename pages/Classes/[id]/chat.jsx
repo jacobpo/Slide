@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Sidebar from "../../../components/Sidebar";
 import ClassHeading from "../../../components/ClassHeading";
+import axios from "axios"
 
 
 
@@ -38,6 +39,7 @@ function MainChat(props) {
     ])
 
     const onSubmit = () => {
+        axios.get("/api/newcomment").then((res) => console.log(res))
         document.getElementById("messagebox").value = "";
 
         setMessages((messages) => [
