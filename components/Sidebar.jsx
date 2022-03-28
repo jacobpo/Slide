@@ -8,27 +8,55 @@ function Sidebar(props) {
     const [id, setID] = useState("")
     const [showGroups, setShowGroups] = useState(false)
     const [groups, setGroups] = useState([{Name: "Group 1", id: 1}, {Name: "Group 2", id: 2}])
+    const [mobile, setMobile] = useState(false)
+    const [displaymobile, setDisplayMobile] = useState(false)
+
+    const [css, setCSS] = useState("")
+    const [showNavBar, setShowNavBar] = useState(true)
+
     const router = useRouter()
     useEffect(() => {
         if (!router.isReady) return;
 		const { id } = router.query;
         console.log(id)
         setID("/" + id)
+        setMobile(window.innerWidth<600)
+        setDisplayMobile(window.innerWidth<600)
+
+        if(window.innerWidth<600){
+            setCSS(" flex flex-col items-center  h-screen bg-[#8b9dc3] w-40  text-center text-white space-y-8 w-screen")
+        } else {
+            setCSS(" flex flex-col items-center  h-screen bg-[#8b9dc3] w-40  text-center text-white space-y-8")
+
+        }
+
     }, [router.isReady,
     ])
+
+    const removenav = () => {
+        setShowNavBar(false)
+        setDisplayMobile(true)
+        props.showContent()
+    }
+
+    const shownav = () => {
+        setShowNavBar(true)
+        setDisplayMobile(false)
+
+        props.removeContent()
+    }
 	return (
 		<>
-			<div className=" flex flex-col items-center  h-screen bg-[#8b9dc3] w-40  text-center text-white space-y-8">
-				{/* <div onClick = {props.chat}>
-						<a>Chat</a>
+        {showNavBar && !displaymobile ? (
 
-				</div> */}
-                	<Link href={`/Classes${id}/chat`}>
-						<a>Chat</a>
+        
+			<div className={css}>
+                	<Link href={`/Classes${id}/chat`} >
+						<a onClick = {mobile ? removenav : undefined}>Chat</a>
 					</Link>
 				{/* </div> */}
                 <Link href={`/Classes${id}/resources`}>
-						<a>Resources</a>
+						<a onClick = {mobile ? removenav : undefined}>Resources</a>
 					</Link>
                 <div onClick = {() => (setShowGroups(true))}>
 						<a>Join study group</a>
@@ -64,6 +92,10 @@ function Sidebar(props) {
 					</Link>
 				</div>
             </div>
+            ) : (
+                <div onClick = {shownav}><img className = "w-[50px]" src = "/backarrow.png"></img></div>
+                
+            )}
 		</>
 	);
 }

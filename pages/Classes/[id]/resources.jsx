@@ -13,12 +13,22 @@ function Resources(props) {
     const [messages, setMessages] = useState([{types: "Docs", Link: "https://docs.google.com/document/d/1qy7dkJ6ZFC1mVb9xI6-TpwBA8YOsEcHV/edit", Name: "Week 1"}])
     const [fileURL, setFileUrl] = useState("")
     const [showLinkDoc, setShowLinkDoc] = useState(false)
+    const [mobile, setMobile] = useState(false)
+    const [docWidths, setDocWidths] = useState("grid grid-cols-3 absolute top-40 left-40 ml-10 w-[1000px]")
+    const [linkDocWidths, setLinkDocWidths] = useState("grid grid-cols-3 absolute top-40 left-40 ml-10")
+    const [showContent, setShowContent] = useState(true)
+
+
 
     const router = useRouter()
     useEffect(() => {
         if (!router.isReady) return;
 		const { id } = router.query;
         setPlaceholder(`Share a resource with #${id}`)
+        if(window.innerWidth <600){
+            setMobile(true)
+            setDocWidths("grid absolute top-40 ml-10")
+        }
     }, [router.isReady,
     ])
 
@@ -48,27 +58,20 @@ function Resources(props) {
 
 	return (
 		<>
-                    <ClassHeading />
+        <ClassHeading />
 
-                    <Sidebar />
-        	<div className=" absolute top-40 left-40 ml-10 ">
+        <Sidebar showContent = {() => setShowContent(true)} removeContent = {() => setShowContent(false)}/>
+
+
+        {showContent && (
+            <div>
+
+
+        	{/* <div className=" absolute top-40  ml-10 ">
                 <img className = "max-h-[500px]" src = {fileURL}/>
-             </div>
-
-             <div className = "grid grid-cols-3 absolute top-40 left-40 ml-10 w-[1000px]">
-             {/* <div className="">
-                 <p className = "">Default</p>
-                <a href = "https://docs.google.com/document/d/1qy7dkJ6ZFC1mVb9xI6-TpwBA8YOsEcHV/edit"><img className = "max-h-[100px] mb-2" src = "/google docs.png"></img></a>
-                <LinkDoc />
-             </div>
-             <div className=" ">
-                 <p>Link Google Sheets</p>
-                <a href = "https://docs.google.com/document/d/1qy7dkJ6ZFC1mVb9xI6-TpwBA8YOsEcHV/edit"><img className = "h-[130px] mt-[-10px]" src = "/google sheets.png"></img></a>
-             </div>
-             <div className=" ">
-                 <p>Link Google Slides</p>
-                <a href = "https://docs.google.com/document/d/1qy7dkJ6ZFC1mVb9xI6-TpwBA8YOsEcHV/edit"><img className = "h-[130px] mt-[-10px]" src = "/google slides.png"></img></a>
              </div> */}
+
+             <div className = {docWidths}>
                 {messages?.map(function (message, index) {
                     return (
                         <div key={index} className="mb-[10px] text-center">
@@ -92,7 +95,7 @@ function Resources(props) {
              </div>
 
              {showLinkDoc && (
-                 <div className = "absolute top-[550px] left-40 ml-10 w-[1000px]">
+                 <div className = "absolute top-[550px] left-40 ml-10 ">
                     <LinkDoc addF = {newResource}/>
 
                  </div>
@@ -102,13 +105,16 @@ function Resources(props) {
 
 
 
-
+{/* 
         <div className = "">
             <div className = "">
                 <input id = "messagebox" onChange = {fileChange} type = "file" className = " rounded-lg pl-2 h-[50px]" placeholder = {placeholder} />
-                {/* <button onClick = {onSubmit} className = "ml-3">Post</button> */}
             </div>
+        </div> */}
+
         </div>
+
+            )}
 		</>
 	);
 }
