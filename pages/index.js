@@ -11,14 +11,14 @@ export default function Home() {
       <div>
         <ul>
           <li>
-          <Link href = "/Classes/ACCT1101/">ACCT1101</Link> 
+            <Link href="/Classes/TheBeginning/">TheBeginning</Link>
           </li>
-          <li>
+          {/* <li>
           <Link href = "/Classes/CITS1401/">CITS1401</Link> 
           </li>
           <li>
           <Link href = "/Classes/FINA3000/">FINA300</Link> 
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>
