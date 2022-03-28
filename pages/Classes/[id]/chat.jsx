@@ -43,7 +43,7 @@ function MainChat(props) {
 
 
     const router = useRouter()
-    const messageRef = firestore.collection('messages')
+    const messageRef = firestore.collection('messages' + props.id)
     const query = messageRef.orderBy('createdAt').limit(25)
     const [messages] = useCollectionData(query, { idField: 'id' })
 
@@ -142,3 +142,11 @@ function MainChat(props) {
 }
 
 export default MainChat;
+
+
+
+export async function getServerSideProps({ query }) {
+    const id = query.id
+
+    return { props: { id } };
+}
