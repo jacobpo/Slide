@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <div className="w-screen h-screen items-center justify-center">
-            <div className = "bg-[#808080] w-[200px] text-white rounded-lg p-2  relative justify-center items-center">
+            <div className = "bg-[#808080] w-[250px] text-white rounded-lg p-2  relative justify-center items-center">
                 <form onSubmit = {handleSubmit(onSubmit)}>
                 <div className = "mb-1">
                     <input className = "bg-transparent border-[1px] border-white p-1" {...register("University", { required: true })} type = "text" placeholder = "University"/>
