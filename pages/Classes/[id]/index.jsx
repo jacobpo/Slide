@@ -12,7 +12,7 @@ function Sidebar(props) {
     { Name: 'Group 1', id: 1 },
     { Name: 'Group 2', id: 2 },
   ])
-  const [mobile, setMobile] = useState(window.innerWidth < 600)
+  const [mobile, setMobile] = useState(false)
   const [displaymobile, setDisplayMobile] = useState(false)
 
   const [css, setCSS] = useState('')
@@ -31,7 +31,7 @@ function Sidebar(props) {
     // setCSS(
     //   ' flex flex-col items-center  h-screen bg-[#8b9dc3] w-full  text-center text-white space-y-8 w-screen',
     // )
-    if (mobile) {
+    if (window.innerWidth < 600) {
       setCSS(
         ' flex flex-col items-center  h-screen bg-[#8b9dc3] w-full  text-center text-white space-y-8 w-screen',
       )
