@@ -22,7 +22,7 @@ export default function Home() {
 
   useEffect(async () => {
     const response = await axios.get(
-      `https://universities.hipolabs.com/search`,
+      `http://universities.hipolabs.com/search`,
       {
         params: { name: university },
       },
